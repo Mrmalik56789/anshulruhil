@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <circle cx="32" cy="32" r="29" stroke="#1E3A5F" stroke-width="2.2" fill="white"/>
+  <text x="32" y="30" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="9" font-weight="800" fill="#1E3A5F" letter-spacing="1.4">HALO</text>
+  <text x="32" y="42" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="6.5" font-weight="600" fill="#1E3A5F" letter-spacing="1.6">GROUP</text>
+</svg>
