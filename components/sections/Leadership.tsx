@@ -38,16 +38,12 @@ export function Leadership() {
             </div>
           </div>
 
-          <div
-            id="achievements"
-            className="grid grid-cols-2 gap-y-8 sm:grid-cols-4 sm:gap-0"
-          >
+          <div className="grid grid-cols-2 gap-y-8 sm:grid-cols-4 sm:gap-0">
             {site.stats.map((stat, index) => {
               const Icon = icons[stat.icon];
               return (
                 <div
                   key={stat.value}
-                  id={index === 0 ? "impact" : undefined}
                   className={`flex flex-col items-center px-2 text-center sm:px-4 ${
                     index > 0 ? "sm:border-l sm:border-[#eceaf6]" : ""
                   }`}

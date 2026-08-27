@@ -51,7 +51,7 @@ export function Nav() {
           </span>
         </a>
 
-        <nav className="hidden items-center gap-7 xl:gap-10 lg:flex">
+        <nav className="hidden items-center gap-5 xl:flex xl:gap-8">
           {site.nav.map((item) => {
             const isActive = active === item.href;
             return (
@@ -72,7 +72,7 @@ export function Nav() {
           <ConnectButton className="inline-flex" />
           <button
             type="button"
-            className="grid h-11 w-11 place-items-center rounded-full bg-white text-ink shadow-sm lg:hidden"
+            className="grid h-11 w-11 place-items-center rounded-full bg-white text-ink shadow-sm xl:hidden"
             aria-label={open ? "Close menu" : "Open menu"}
             onClick={() => setOpen((v) => !v)}
           >
@@ -82,7 +82,7 @@ export function Nav() {
       </div>
 
       {open ? (
-        <div className="border-t border-line bg-white/95 backdrop-blur-xl lg:hidden">
+        <div className="border-t border-line bg-white/95 backdrop-blur-xl xl:hidden">
           <div className="shell flex flex-col py-3">
             {site.nav.map((item) => (
               <a

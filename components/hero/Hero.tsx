@@ -42,7 +42,6 @@ export function Hero() {
           </motion.div>
 
           <motion.h1
-            id="about"
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.08, ease }}
@@ -62,7 +61,6 @@ export function Hero() {
           </motion.p>
 
           <motion.div
-            id="contact"
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.24, ease }}

@@ -7,7 +7,6 @@ import { site } from "@/data/site";
 export function Companies() {
   return (
     <motion.div
-      id="companies"
       initial={{ opacity: 0, y: 18 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.7, delay: 0.42, ease: [0.22, 1, 0.36, 1] }}
