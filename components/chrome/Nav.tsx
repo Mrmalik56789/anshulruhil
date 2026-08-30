@@ -12,7 +12,7 @@ const navItems = [
   { href: "/about", label: "About", hash: "about" },
   { href: "/#leadership", label: "Leadership", hash: "leadership" },
   { href: "/#companies", label: "Companies", hash: "companies" },
-  { href: "/#achievements", label: "Achievements", hash: "achievements" },
+  { href: "/achievements", label: "Achievements", hash: "achievements" },
   { href: "/#gallery", label: "Gallery", hash: "gallery" },
   { href: "/#contact", label: "Contact", hash: "contact" },
 ] as const;
@@ -28,6 +28,10 @@ export function Nav() {
       setScrolled(window.scrollY > 8);
       if (pathname === "/about") {
         setActive("about");
+        return;
+      }
+      if (pathname === "/achievements") {
+        setActive("achievements");
         return;
       }
       if (pathname !== "/") return;
@@ -73,7 +77,9 @@ export function Nav() {
             const isActive =
               pathname === "/about"
                 ? item.hash === "about"
-                : active === item.hash || (item.hash === "home" && active === "home" && pathname === "/");
+                : pathname === "/achievements"
+                  ? item.hash === "achievements"
+                  : active === item.hash || (item.hash === "home" && active === "home" && pathname === "/");
             return (
               <Link
                 key={item.href}

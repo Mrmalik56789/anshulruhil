@@ -26,7 +26,7 @@ export const site = {
     { href: "/about", label: "About" },
     { href: "/#leadership", label: "Leadership" },
     { href: "/#companies", label: "Companies" },
-    { href: "/#achievements", label: "Achievements" },
+    { href: "/achievements", label: "Achievements" },
     { href: "/#gallery", label: "Gallery" },
     { href: "/#contact", label: "Contact" },
   ],
