@@ -7,27 +7,27 @@ import { site } from "@/data/site";
 export function Companies() {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 18 }}
+      initial={{ opacity: 0, y: 12 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.7, delay: 0.42, ease: [0.22, 1, 0.36, 1] }}
-      className="relative z-10 mt-6 lg:mt-4"
+      transition={{ duration: 0.55, delay: 0.28, ease: [0.22, 1, 0.36, 1] }}
+      className="relative z-10 w-full will-change-transform"
     >
-      <div className="mb-3 flex items-center gap-3">
+      <div className="mb-3 flex items-center justify-center gap-3 lg:justify-start">
         <p className="text-[12px] font-bold tracking-[0.16em] text-[#7c4dff] lg:text-[13px]">
           COMPANIES & INITIATIVES
         </p>
-        <span className="h-1.5 w-1.5 rounded-full bg-[#7c4dff]" />
-        <span className="h-px max-w-[220px] flex-1 bg-gradient-to-r from-[#c4b5fd] to-transparent" />
+        <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-[#7c4dff]" />
+        <span className="h-px min-w-0 flex-1 bg-gradient-to-r from-[#c4b5fd] to-transparent" />
       </div>
 
-      <div className="flex gap-2 overflow-x-auto pb-2 lg:flex-wrap lg:gap-2.5 lg:overflow-visible lg:pb-0">
+      <div className="flex justify-center gap-2.5 overflow-x-auto pb-1 [scrollbar-width:none] sm:gap-3 lg:justify-between lg:gap-3 lg:overflow-visible lg:pb-0 [&::-webkit-scrollbar]:hidden">
         {site.companies.map((company) => (
           <a
             key={company.name}
             href={company.href}
             target="_blank"
             rel="noreferrer"
-            className="company-card shrink-0"
+            className="company-card shrink-0 will-change-transform"
           >
             <span className="relative flex h-10 w-14 items-center justify-center">
               <Image

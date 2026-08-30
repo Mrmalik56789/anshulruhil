@@ -1,89 +1,66 @@
 "use client";
 
-import { memo, useMemo, useState } from "react";
-import Image from "next/image";
-import { motion } from "framer-motion";
+import { memo, useState } from "react";
 import { galleryPhotos } from "@/data/gallery";
+import { GalleryTile } from "@/components/gallery/GalleryTile";
 import { PhotoLightbox } from "@/components/gallery/PhotoLightbox";
-import { ease } from "@/lib/motion";
 
-function tileClass(index: number, ratio: number) {
-  // Balanced mosaic: mix landscape / portrait spans without oversized portrait walls
-  if (ratio > 1.25) {
-    return index % 5 === 0
-      ? "md:col-span-2 md:row-span-1 aspect-[16/10]"
-      : "aspect-[16/11]";
-  }
-  if (ratio < 0.85) {
-    return "aspect-[4/5] md:row-span-2";
-  }
-  return "aspect-[5/4]";
-}
+const particles = [
+  { top: "18%", left: "8%", size: 5, delay: 0 },
+  { top: "32%", right: "12%", size: 7, delay: 0.6 },
+  { top: "58%", left: "16%", size: 4, delay: 1.1 },
+  { top: "72%", right: "22%", size: 6, delay: 0.3 },
+  { top: "44%", left: "48%", size: 3, delay: 0.9 },
+];
 
 export const Gallery = memo(function Gallery() {
   const [active, setActive] = useState<number | null>(null);
 
-  const tiles = useMemo(
-    () =>
-      galleryPhotos.map((photo, index) => ({
-        ...photo,
-        ratio: photo.width / photo.height,
-        className: tileClass(index, photo.width / photo.height),
-      })),
-    [],
-  );
-
   return (
-    <section id="gallery" className="relative z-[2] overflow-hidden py-16 lg:py-24">
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-x-0 top-0 h-64 bg-[radial-gradient(ellipse_at_50%_0%,rgba(124,77,255,0.12),transparent_70%)]"
-      />
+    <section id="gallery" className="relative z-[2] overflow-hidden py-20 lg:py-28">
+      <div aria-hidden className="pointer-events-none absolute inset-0">
+        <div className="absolute left-1/2 top-10 h-[30rem] w-[min(92vw,52rem)] -translate-x-1/2 rounded-full bg-[radial-gradient(ellipse_at_center,rgba(124,77,255,0.12),transparent_68%)] blur-2xl" />
+        <div className="absolute -left-16 bottom-20 h-64 w-64 rounded-full bg-[radial-gradient(circle,rgba(167,139,250,0.12),transparent_70%)] blur-3xl" />
+        <div className="absolute -right-10 top-1/3 h-72 w-72 rounded-full bg-[radial-gradient(circle,rgba(124,77,255,0.08),transparent_70%)] blur-3xl" />
+        {particles.map((p, i) => (
+          <span
+            key={i}
+            className="absolute rounded-full bg-[#a78bfa]/45"
+            style={{
+              top: p.top,
+              left: p.left,
+              right: p.right,
+              width: p.size,
+              height: p.size,
+              animation: `floaty ${5 + i * 0.4}s ease-in-out ${p.delay}s infinite`,
+            }}
+          />
+        ))}
+      </div>
 
       <div className="shell relative">
-        <motion.p
-          initial={{ opacity: 0, y: 12 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.55, ease }}
-          className="mb-8 text-center text-[12px] font-bold tracking-[0.22em] text-[#7c4dff] lg:mb-10"
-        >
-          GALLERY
-        </motion.p>
+        <header className="mx-auto mb-12 max-w-3xl text-center lg:mb-16">
+          <p className="mb-4 text-[12px] font-bold tracking-[0.24em] text-[#7c4dff]">
+            GALLERY
+          </p>
+          <h2 className="text-balance text-[1.65rem] font-semibold leading-[1.2] tracking-[-0.02em] text-[#1a1428] sm:text-[2rem] lg:text-[2.35rem]">
+            Moments Across Innovation,
+            <br className="hidden sm:block" /> Leadership & Global Impact
+          </h2>
+          <p className="mx-auto mt-5 max-w-2xl text-[15px] leading-relaxed text-[#5b6170] sm:text-[16px]">
+            A visual journey through global leadership, entrepreneurship, technology,
+            innovation, strategic partnerships, awards, and meaningful milestones.
+          </p>
+        </header>
 
-        <div className="grid grid-cols-2 gap-2.5 sm:gap-3 md:grid-cols-3 lg:grid-cols-4 lg:gap-3.5 xl:grid-cols-5 2xl:grid-cols-6">
-          {tiles.map((photo, index) => (
-            <motion.button
+        <div className="columns-1 gap-4 sm:columns-2 sm:gap-5 lg:columns-3 xl:columns-4">
+          {galleryPhotos.map((photo, index) => (
+            <GalleryTile
               key={photo.id}
-              type="button"
-              initial={{ opacity: 0, y: 18, scale: 0.98 }}
-              whileInView={{ opacity: 1, y: 0, scale: 1 }}
-              viewport={{ once: true, amount: 0.15 }}
-              transition={{
-                duration: 0.5,
-                delay: Math.min(index % 10, 9) * 0.04,
-                ease,
-              }}
-              whileHover={{ y: -3, scale: 1.02 }}
-              whileTap={{ scale: 0.985 }}
-              onClick={() => setActive(index)}
-              className={`group relative overflow-hidden rounded-[1.1rem] bg-[#f3edff] shadow-[0_8px_24px_rgba(80,60,140,0.08)] ring-1 ring-[#7c4dff]/08 transition-[box-shadow] duration-300 will-change-transform hover:shadow-[0_18px_40px_rgba(109,58,242,0.18)] hover:ring-[#7c4dff]/22 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#7c4dff]/50 lg:rounded-[1.25rem] ${photo.className}`}
-              aria-label="Open photograph"
-            >
-              <Image
-                src={photo.src}
-                alt=""
-                fill
-                loading={index < 8 ? "eager" : "lazy"}
-                priority={index < 4}
-                sizes="(min-width:1536px) 15vw, (min-width:1280px) 18vw, (min-width:1024px) 22vw, (min-width:768px) 30vw, 46vw"
-                className="object-cover object-[center_20%] transition-transform duration-500 ease-out group-hover:scale-[1.045]"
-              />
-              <span
-                aria-hidden
-                className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#5b2fe0]/10 via-transparent to-white/10 opacity-0 transition duration-300 group-hover:opacity-100"
-              />
-            </motion.button>
+              photo={photo}
+              index={index}
+              onOpen={() => setActive(index)}
+            />
           ))}
         </div>
       </div>
@@ -94,6 +71,15 @@ export const Gallery = memo(function Gallery() {
         onClose={() => setActive(null)}
         onChange={setActive}
       />
+
+      <style jsx global>{`
+        .gallery-tile:hover > span:first-child {
+          transform: translate3d(0, -6px, 0);
+          box-shadow:
+            0 22px 48px rgba(109, 58, 242, 0.2),
+            0 0 0 1px rgba(124, 77, 255, 0.16);
+        }
+      `}</style>
     </section>
   );
 });

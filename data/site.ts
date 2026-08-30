@@ -214,12 +214,6 @@ export const site = {
       copy: "Building bridges between markets and institutions.",
       span: "tall",
     },
-    {
-      src: "/images/gallery/event-06.jpg",
-      title: "Public presence",
-      copy: "A life of forums, briefs, and open-door leadership.",
-      span: "wide",
-    },
   ],
   ventures: [
     {
