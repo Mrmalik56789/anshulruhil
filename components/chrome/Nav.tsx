@@ -60,16 +60,13 @@ export function Nav() {
       <div className="shell flex h-[4.75rem] items-center justify-between gap-8 lg:h-[5.5rem]">
         <Link href="/" className="flex shrink-0 items-center gap-3">
           <Image
-            src="/images/logos/ruhil-mark.png"
-            alt=""
-            width={42}
-            height={42}
-            className="h-10 w-10 object-contain lg:h-11 lg:w-11"
+            src="/images/logos/ruhil-holdings.png"
+            alt="Ruhil Holdings"
+            width={160}
+            height={104}
+            className="h-10 w-auto object-contain lg:h-11"
             priority
           />
-          <span className="text-[12px] font-extrabold tracking-[0.14em] text-ink sm:text-[13px] lg:text-[14px]">
-            RUHIL HOLDINGS
-          </span>
         </Link>
 
         <nav className="hidden items-center gap-5 xl:flex xl:gap-8">

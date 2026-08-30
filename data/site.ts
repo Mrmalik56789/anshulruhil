@@ -35,7 +35,7 @@ export const site = {
       name: "RUHIL",
       sub: "HOLDINGS",
       href: "https://www.ruhilholdings.com/",
-      src: "/images/logos/ruhil-mark.png",
+      src: "/images/logos/ruhil-holdings.png",
     },
     {
       name: "Tesla",
@@ -45,12 +45,12 @@ export const site = {
     {
       name: "Halo\nHomes",
       href: "https://halohomes.ca/",
-      src: "/images/logos/halo-mark.svg",
+      src: "/images/logos/halo-homes.png",
     },
     {
       name: "Gyansetu\nOne World AI",
       href: "https://www.gyansetuoneworld.com/",
-      src: "/images/logos/gyansetu.svg",
+      src: "/images/logos/gyansetu.png",
     },
     {
       name: "Land 2 Lavish",
@@ -60,12 +60,12 @@ export const site = {
     {
       name: "Click\nSpark",
       href: "https://clickspark.ca/",
-      src: "/images/logos/clickspark.svg",
+      src: "/images/logos/clickspark.png",
     },
     {
       name: "Appfabs",
       href: "https://appfabs.ca/",
-      src: "/images/logos/appfabs.svg",
+      src: "/images/logos/appfabs.png",
     },
   ],
   stats: [
@@ -227,7 +227,7 @@ export const site = {
       industry: "Technology · Real Estate · Organic",
       year: "2014",
       href: "https://www.ruhilholdings.com/",
-      src: "/images/logos/ruhil-mark.png",
+      src: "/images/logos/ruhil-holdings.png",
       copy: "Family-owned, zero-debt enterprise delivering software, real estate, and sustainably sourced organic products.",
     },
     {
@@ -235,7 +235,7 @@ export const site = {
       industry: "Hospitality",
       year: "2014",
       href: "https://halohomes.ca/",
-      src: "/images/logos/halo-mark.svg",
+      src: "/images/logos/halo-homes.png",
       copy: "Canadian hospitality rooted in Atithi Devo Bhava — a decade of guests hosted with Indian warmth and uncompromising service.",
     },
     {
@@ -243,7 +243,7 @@ export const site = {
       industry: "EdTech · AI",
       year: "2023",
       href: "https://www.gyansetuoneworld.com/",
-      src: "/images/logos/gyansetu.svg",
+      src: "/images/logos/gyansetu.png",
       copy: "AI-first institute platform: chat assistance, auto-generated quizzes, interactive lessons, and intelligent operations.",
     },
     {
@@ -259,7 +259,7 @@ export const site = {
       industry: "Digital",
       year: "—",
       href: "https://clickspark.ca/",
-      src: "/images/logos/clickspark.svg",
+      src: "/images/logos/clickspark.png",
       copy: "A Ruhil ecosystem brand focused on high-signal digital experiences.",
     },
     {
@@ -267,7 +267,7 @@ export const site = {
       industry: "Product studios",
       year: "—",
       href: "https://appfabs.ca/",
-      src: "/images/logos/appfabs.svg",
+      src: "/images/logos/appfabs.png",
       copy: "Product and application studio bringing ventures from concept to shipped software.",
     },
     {
@@ -275,7 +275,7 @@ export const site = {
       industry: "HealthTech · AI",
       year: "2024",
       href: "#companies",
-      src: "/images/logos/ruhil-mark.png",
+      src: "/images/logos/healthsync.png",
       copy: "Student wellness companion — vitals, sleep, nutrition, and an AI health assistant with institutional dashboards.",
     },
     {
@@ -283,7 +283,7 @@ export const site = {
       industry: "Wellness · AI",
       year: "2024",
       href: "#companies",
-      src: "/images/logos/ruhil-mark.png",
+      src: "/images/logos/yogsetu.png",
       copy: "Yoga marketplace connecting instructors and practitioners, with AI guidance for sessions, bookings, and goals.",
     },
     {
@@ -291,7 +291,7 @@ export const site = {
       industry: "Community platforms",
       year: "2024",
       href: "#companies",
-      src: "/images/logos/ruhil-mark.png",
+      src: "/images/logos/alumni-setu.png",
       copy: "Lifelong alumni networks — mentorship, events, fundraising, and verified community, designed for institutions.",
     },
   ],
@@ -329,7 +329,7 @@ export const site = {
       year: "2014",
       title: "Ruhil Holdings",
       copy: "Family enterprise launched in India and Canada — technology, land, and organic farms.",
-      logo: "/images/logos/ruhil-mark.png",
+      logo: "/images/logos/ruhil-holdings.png",
     },
     {
       year: "2018",
@@ -348,31 +348,37 @@ export const site = {
       year: "—",
       title: "One Team One Dream Award",
       copy: "Honoring collective leadership and culture that compounds.",
+      logo: "/images/awards/one-team-one-dream.png",
     },
     {
       year: "2023",
       title: "HANA Ratan Award",
       copy: "Recognition for distinguished contribution and community impact.",
+      logo: "/images/awards/hana-ratan.png",
     },
     {
       year: "2023",
       title: "50 Under 50 · Canada",
       copy: "Named among Canada’s standout leaders under fifty.",
+      logo: "/images/awards/50-under-50.png",
     },
     {
       year: "2024",
       title: "Best Global AI Education Platform",
       copy: "Gyansetu recognized for transforming institute operations with AI.",
+      logo: "/images/awards/best-global-ai-education.png",
     },
     {
       year: "2024",
       title: "Best AI Product · North America",
       copy: "Product excellence across the Ruhil AI portfolio.",
+      logo: "/images/awards/best-ai-product.png",
     },
     {
       year: "2025",
       title: "Best AI Product · North America",
       copy: "Consecutive honor — sustained invention, not a single launch.",
+      logo: "/images/awards/best-ai-product.png",
     },
   ],
   media: [

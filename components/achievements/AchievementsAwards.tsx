@@ -9,48 +9,49 @@ import { item, stagger } from "@/lib/motion";
 
 export const AchievementsAwards = memo(function AchievementsAwards() {
   return (
-    <section className="relative z-[2] py-16 lg:py-24">
+    <section className="relative z-[2] py-14 lg:py-20">
       <div className="shell">
         <SectionHeader
           eyebrow="AWARDS & RECOGNITION"
           title="Honors earned through sustained impact"
-          copy="National and North American recognition for leadership, community contribution, and AI product excellence."
+          copy="National and North American recognition for leadership, community, and AI product excellence."
+          align="center"
         />
 
         <motion.div
           variants={stagger}
           initial="hidden"
           whileInView="show"
-          viewport={{ once: true, amount: 0.1 }}
-          className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3"
+          viewport={{ once: true, amount: 0.12 }}
+          className="mt-10 flex gap-4 overflow-x-auto pb-2 [-ms-overflow-style:none] [scrollbar-width:none] sm:grid sm:grid-cols-2 sm:overflow-visible lg:grid-cols-3 [&::-webkit-scrollbar]:hidden"
         >
           {achievementsPage.awards.map((award) => (
             <motion.article
               key={`${award.year}-${award.title}`}
               variants={item}
               whileHover={{ y: -4 }}
-              transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-              className="award-plaque group overflow-hidden rounded-[1.8rem] will-change-transform"
+              transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+              className="award-plaque group w-[min(82vw,320px)] shrink-0 overflow-hidden rounded-[1.4rem] will-change-transform sm:w-auto"
             >
-              <div className="relative aspect-[16/10] overflow-hidden">
+              <div className="relative flex h-[160px] items-center justify-center overflow-hidden bg-[#f7f5fc] sm:h-[170px]">
                 <Image
                   src={award.image}
-                  alt=""
+                  alt={award.title}
                   fill
-                  sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 90vw"
-                  className="object-cover transition duration-500 group-hover:scale-[1.04]"
+                  sizes="(min-width: 1024px) 30vw, 320px"
+                  quality={95}
+                  className="object-contain p-4 transition duration-500 group-hover:scale-[1.04]"
                   loading="lazy"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#1a0f38]/55 via-transparent to-transparent" />
-                <span className="absolute bottom-3 left-4 rounded-full bg-white/95 px-3 py-1 text-[11px] font-bold tracking-[0.14em] text-[#6d3af2]">
+                <span className="absolute bottom-3 left-3 rounded-full bg-white/95 px-2.5 py-0.5 text-[10px] font-bold tracking-[0.12em] text-[#6d3af2] shadow-sm">
                   {award.year}
                 </span>
               </div>
-              <div className="p-6 sm:p-7">
-                <h3 className="text-[1.2rem] font-extrabold tracking-[-0.03em] text-ink">
+              <div className="p-5">
+                <h3 className="text-[1.05rem] font-extrabold tracking-[-0.03em] text-ink">
                   {award.title}
                 </h3>
-                <p className="mt-3 text-[0.95rem] leading-[1.7] text-muted">{award.copy}</p>
+                <p className="mt-2 text-[0.9rem] leading-[1.65] text-muted">{award.copy}</p>
               </div>
             </motion.article>
           ))}

@@ -47,8 +47,13 @@ export function Footer() {
           <div className="grid gap-10 lg:grid-cols-[1.2fr_0.9fr_0.9fr]">
             <div>
               <Link href="/" className="inline-flex items-center gap-3">
-                <Image src="/images/logos/ruhil-mark.png" alt="" width={42} height={42} className="h-10 w-10 object-contain" />
-                <span className="text-[13px] font-extrabold tracking-[0.14em] text-white">RUHIL HOLDINGS</span>
+                <Image
+                  src="/images/logos/ruhil-holdings.png"
+                  alt="Ruhil Holdings"
+                  width={160}
+                  height={104}
+                  className="h-10 w-auto object-contain"
+                />
               </Link>
               <p className="mt-5 max-w-sm text-[0.95rem] leading-[1.75] text-white/70">{site.tagline}</p>
             </div>

@@ -4,11 +4,10 @@ import { Footer } from "@/components/chrome/Footer";
 import { AchievementsHero } from "@/components/achievements/AchievementsHero";
 import { AchievementsStats } from "@/components/achievements/AchievementsStats";
 import { AchievementsTimeline } from "@/components/achievements/AchievementsTimeline";
-import { AchievementsCompanies } from "@/components/achievements/AchievementsCompanies";
+import { AchievementsVentures } from "@/components/achievements/AchievementsVentures";
 import { AchievementsAwards } from "@/components/achievements/AchievementsAwards";
-import { AchievementsMedia } from "@/components/achievements/AchievementsMedia";
-import { AchievementsImpact } from "@/components/achievements/AchievementsImpact";
-import { AchievementsClosing } from "@/components/achievements/AchievementsClosing";
+import { AchievementsPhilosophy } from "@/components/achievements/AchievementsPhilosophy";
+import { AchievementsVision } from "@/components/achievements/AchievementsVision";
 import { achievementsPage } from "@/data/achievementsPage";
 
 export const metadata: Metadata = {
@@ -21,9 +20,9 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/images/gallery/award-ceremony.jpeg",
-        width: 1600,
-        height: 1067,
+        url: "/images/gallery/event-06.jpg",
+        width: 1080,
+        height: 718,
         alt: "Anshul Ruhil achievements",
       },
     ],
@@ -39,11 +38,10 @@ export default function AchievementsPage() {
       <AchievementsHero />
       <AchievementsStats />
       <AchievementsTimeline />
-      <AchievementsCompanies />
+      <AchievementsVentures />
       <AchievementsAwards />
-      <AchievementsMedia />
-      <AchievementsImpact />
-      <AchievementsClosing />
+      <AchievementsPhilosophy />
+      <AchievementsVision />
       <Footer />
     </main>
   );

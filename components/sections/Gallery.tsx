@@ -1,88 +1,99 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { memo, useMemo, useState } from "react";
+import Image from "next/image";
 import { motion } from "framer-motion";
-import { galleryItems, type GalleryFilter } from "@/data/gallery";
-import { GalleryHero } from "@/components/gallery/GalleryHero";
-import { GalleryFilters } from "@/components/gallery/GalleryFilters";
-import { FeaturedGallery } from "@/components/gallery/FeaturedGallery";
-import { LeadershipTimelineStrip } from "@/components/gallery/LeadershipTimelineStrip";
-import { AwardsGallery } from "@/components/gallery/AwardsGallery";
-import { LeadershipGallery } from "@/components/gallery/LeadershipGallery";
-import { EventsCarousel } from "@/components/gallery/EventsCarousel";
-import { NetworkingGallery } from "@/components/gallery/NetworkingGallery";
-import { CSRGallery } from "@/components/gallery/CSRGallery";
-import { ImageLightbox } from "@/components/gallery/ImageLightbox";
-import { GalleryFooterCTA } from "@/components/gallery/GalleryFooterCTA";
-import { fadeUp } from "@/lib/motion";
+import { galleryPhotos } from "@/data/gallery";
+import { PhotoLightbox } from "@/components/gallery/PhotoLightbox";
+import { ease } from "@/lib/motion";
 
-export function Gallery() {
-  const [filter, setFilter] = useState<GalleryFilter>("All");
-  const [activeId, setActiveId] = useState<string | null>(null);
+function tileClass(index: number, ratio: number) {
+  // Balanced mosaic: mix landscape / portrait spans without oversized portrait walls
+  if (ratio > 1.25) {
+    return index % 5 === 0
+      ? "md:col-span-2 md:row-span-1 aspect-[16/10]"
+      : "aspect-[16/11]";
+  }
+  if (ratio < 0.85) {
+    return "aspect-[4/5] md:row-span-2";
+  }
+  return "aspect-[5/4]";
+}
 
-  const filtered = useMemo(() => {
-    const list =
-      filter === "All" ? galleryItems : galleryItems.filter((item) => item.category === filter);
-    return [...list].sort((a, b) => {
-      if (a.span === "featured" && b.span !== "featured") return -1;
-      if (b.span === "featured" && a.span !== "featured") return 1;
-      return 0;
-    });
-  }, [filter]);
+export const Gallery = memo(function Gallery() {
+  const [active, setActive] = useState<number | null>(null);
 
-  const activeIndex = activeId ? galleryItems.findIndex((item) => item.id === activeId) : null;
-
-  const openFiltered = (index: number) => {
-    const item = filtered[index];
-    if (item) setActiveId(item.id);
-  };
-
-  const openBySrc = (src: string) => {
-    const item = galleryItems.find((entry) => entry.src === src);
-    if (item) setActiveId(item.id);
-  };
+  const tiles = useMemo(
+    () =>
+      galleryPhotos.map((photo, index) => ({
+        ...photo,
+        ratio: photo.width / photo.height,
+        className: tileClass(index, photo.width / photo.height),
+      })),
+    [],
+  );
 
   return (
-    <section id="gallery" className="relative z-[2] py-16 lg:py-24">
-      <div className="shell space-y-14 lg:space-y-20">
-        <GalleryHero />
+    <section id="gallery" className="relative z-[2] overflow-hidden py-16 lg:py-24">
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-x-0 top-0 h-64 bg-[radial-gradient(ellipse_at_50%_0%,rgba(124,77,255,0.12),transparent_70%)]"
+      />
 
-        <motion.div {...fadeUp} className="mx-auto max-w-3xl text-center">
-          <p className="text-[12px] font-bold tracking-[0.18em] text-[#7c4dff]">FEATURED IMAGES</p>
-          <div className="mx-auto mt-2.5 h-px max-w-[220px] bg-gradient-to-r from-transparent via-[#7c4dff] to-transparent" />
-          <h3 className="mt-5 text-[clamp(1.85rem,3.8vw,2.9rem)] font-extrabold leading-[1.08] tracking-[-0.04em] text-ink">
-            A curated leadership gallery
-          </h3>
-          <p className="mt-4 text-[1.05rem] leading-[1.8] text-muted">
-            Milestones across awards, boards, stages, and rooms where strategy becomes presence.
-          </p>
-        </motion.div>
+      <div className="shell relative">
+        <motion.p
+          initial={{ opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.55, ease }}
+          className="mb-8 text-center text-[12px] font-bold tracking-[0.22em] text-[#7c4dff] lg:mb-10"
+        >
+          GALLERY
+        </motion.p>
 
-        <GalleryFilters active={filter} onChange={setFilter} />
-
-        <FeaturedGallery items={filtered} onOpen={openFiltered} />
-
-        <LeadershipTimelineStrip />
-
-        <AwardsGallery />
-
-        <LeadershipGallery onOpen={openBySrc} />
-
-        <EventsCarousel />
-
-        <NetworkingGallery onOpen={openBySrc} />
-
-        <CSRGallery onOpen={openBySrc} />
-
-        <GalleryFooterCTA />
+        <div className="grid grid-cols-2 gap-2.5 sm:gap-3 md:grid-cols-3 lg:grid-cols-4 lg:gap-3.5 xl:grid-cols-5 2xl:grid-cols-6">
+          {tiles.map((photo, index) => (
+            <motion.button
+              key={photo.id}
+              type="button"
+              initial={{ opacity: 0, y: 18, scale: 0.98 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              viewport={{ once: true, amount: 0.15 }}
+              transition={{
+                duration: 0.5,
+                delay: Math.min(index % 10, 9) * 0.04,
+                ease,
+              }}
+              whileHover={{ y: -3, scale: 1.02 }}
+              whileTap={{ scale: 0.985 }}
+              onClick={() => setActive(index)}
+              className={`group relative overflow-hidden rounded-[1.1rem] bg-[#f3edff] shadow-[0_8px_24px_rgba(80,60,140,0.08)] ring-1 ring-[#7c4dff]/08 transition-[box-shadow] duration-300 will-change-transform hover:shadow-[0_18px_40px_rgba(109,58,242,0.18)] hover:ring-[#7c4dff]/22 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#7c4dff]/50 lg:rounded-[1.25rem] ${photo.className}`}
+              aria-label="Open photograph"
+            >
+              <Image
+                src={photo.src}
+                alt=""
+                fill
+                loading={index < 8 ? "eager" : "lazy"}
+                priority={index < 4}
+                sizes="(min-width:1536px) 15vw, (min-width:1280px) 18vw, (min-width:1024px) 22vw, (min-width:768px) 30vw, 46vw"
+                className="object-cover object-[center_20%] transition-transform duration-500 ease-out group-hover:scale-[1.045]"
+              />
+              <span
+                aria-hidden
+                className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#5b2fe0]/10 via-transparent to-white/10 opacity-0 transition duration-300 group-hover:opacity-100"
+              />
+            </motion.button>
+          ))}
+        </div>
       </div>
 
-      <ImageLightbox
-        items={galleryItems}
-        index={activeIndex !== null && activeIndex >= 0 ? activeIndex : null}
-        onClose={() => setActiveId(null)}
-        onChange={(index) => setActiveId(galleryItems[index]?.id ?? null)}
+      <PhotoLightbox
+        photos={galleryPhotos}
+        index={active}
+        onClose={() => setActive(null)}
+        onChange={setActive}
       />
     </section>
   );
-}
+});

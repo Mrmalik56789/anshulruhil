@@ -1,7 +1,7 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
-import { Award } from "lucide-react";
 import { site } from "@/data/site";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { item, stagger } from "@/lib/motion";
@@ -27,19 +27,29 @@ export function Awards() {
             <motion.article
               key={award.title}
               variants={item}
-              whileHover={{ y: -10, rotate: -0.4 }}
-              className="award-plaque relative overflow-hidden rounded-[1.8rem] px-7 py-8"
+              whileHover={{ y: -8 }}
+              className="award-plaque group relative overflow-hidden rounded-[1.8rem]"
             >
-              <div className="grid h-12 w-12 place-items-center rounded-full bg-gradient-to-br from-[#c4b5fd] to-[#7c4dff] text-white shadow-[0_12px_28px_rgba(109,58,242,0.3)]">
-                <Award size={20} />
+              <div className="relative flex h-[148px] items-center justify-center bg-[#f7f5fc] sm:h-[158px]">
+                <Image
+                  src={award.logo}
+                  alt={award.title}
+                  fill
+                  sizes="(min-width:1280px) 28vw, (min-width:640px) 42vw, 90vw"
+                  quality={95}
+                  className="object-contain p-5 transition duration-500 group-hover:scale-[1.04]"
+                  loading="lazy"
+                />
+                <span className="absolute bottom-3 left-3 rounded-full bg-white/95 px-2.5 py-0.5 text-[10px] font-bold tracking-[0.14em] text-[#7c4dff] shadow-sm">
+                  {award.year === "—" ? "CAREER" : award.year}
+                </span>
               </div>
-              <p className="mt-5 text-[12px] font-bold tracking-[0.18em] text-[#7c4dff]">
-                {award.year === "—" ? "CAREER" : award.year}
-              </p>
-              <h3 className="mt-2 text-[1.4rem] font-extrabold leading-snug tracking-[-0.03em] text-ink">
-                {award.title}
-              </h3>
-              <p className="mt-3 text-[0.95rem] leading-[1.7] text-muted">{award.copy}</p>
+              <div className="px-6 pb-7 pt-5">
+                <h3 className="text-[1.25rem] font-extrabold leading-snug tracking-[-0.03em] text-ink">
+                  {award.title}
+                </h3>
+                <p className="mt-3 text-[0.95rem] leading-[1.7] text-muted">{award.copy}</p>
+              </div>
             </motion.article>
           ))}
         </motion.div>

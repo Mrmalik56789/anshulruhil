@@ -9,77 +9,85 @@ import { ease } from "@/lib/motion";
 
 export const AchievementsTimeline = memo(function AchievementsTimeline() {
   return (
-    <section className="relative z-[2] overflow-hidden py-16 lg:py-24">
+    <section className="relative z-[2] py-14 lg:py-20">
       <div className="shell">
         <SectionHeader
-          eyebrow="FEATURED TIMELINE"
-          title="Milestones that shaped the work"
-          copy="A vertical record of enterprise leadership, unicorn ventures, and AI platforms — each step grounded in servant leadership."
+          eyebrow="CAREER JOURNEY"
+          title="A timeline of leadership and ventures"
+          copy="Alternating milestones — enterprise craft, unicorn companies, AI platforms, and national recognition — told as one continuous story."
+          align="center"
         />
 
-        <div className="relative mt-14">
+        <div className="relative mx-auto mt-12 max-w-5xl">
           <div
             aria-hidden
-            className="absolute left-4 top-0 h-full w-px bg-gradient-to-b from-[#7c4dff]/50 via-[#c4b5fd]/60 to-transparent md:left-1/2 md:-translate-x-1/2"
+            className="absolute bottom-0 left-4 top-0 w-px bg-gradient-to-b from-[#7c4dff]/45 via-[#c4b5fd]/55 to-[#7c4dff]/20 md:left-1/2 md:-translate-x-1/2"
           />
 
-          <ol className="space-y-10 md:space-y-16">
-            {achievementsPage.timeline.map((entry, index) => {
+          <ol className="space-y-6 md:space-y-7">
+            {achievementsPage.journey.map((entry, index) => {
               const left = index % 2 === 0;
               return (
                 <motion.li
                   key={`${entry.year}-${entry.title}`}
-                  initial={{ opacity: 0, y: 36 }}
+                  initial={{ opacity: 0, y: 28 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.25 }}
-                  transition={{ duration: 0.75, ease }}
-                  className="relative grid gap-6 md:grid-cols-2 md:gap-12"
+                  viewport={{ once: true, amount: 0.3 }}
+                  transition={{ duration: 0.55, ease }}
+                  className="relative grid md:grid-cols-2 md:gap-8"
                 >
                   <span
                     aria-hidden
-                    className="absolute left-4 top-8 z-[1] h-3 w-3 -translate-x-1/2 rounded-full bg-[#7c4dff] shadow-[0_0_0_6px_rgba(124,77,255,0.16)] md:left-1/2"
+                    className="absolute left-4 top-7 z-[1] h-2.5 w-2.5 -translate-x-1/2 rounded-full bg-[#7c4dff] shadow-[0_0_0_5px_rgba(124,77,255,0.15)] md:left-1/2"
                   />
 
-                  <div className={`${left ? "md:pr-10 md:text-right" : "md:order-2 md:pl-10"} pl-12 md:pl-0`}>
-                    <article className="glass-card overflow-hidden rounded-[1.75rem] text-left transition hover:-translate-y-1 hover:shadow-[0_22px_48px_rgba(109,58,242,0.14)]">
-                      <div className="relative aspect-[16/10] overflow-hidden">
-                        <Image
-                          src={entry.image}
-                          alt=""
-                          fill
-                          sizes="(min-width: 768px) 40vw, 90vw"
-                          className="object-cover transition duration-500 group-hover:scale-105"
-                          loading="lazy"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-[#1a0f38]/35 to-transparent" />
-                      </div>
-                      <div className="p-6 sm:p-7">
-                        <div className="flex flex-wrap items-center gap-3">
-                          <span className="text-[12px] font-bold tracking-[0.16em] text-[#7c4dff]">
-                            {entry.year}
-                          </span>
-                          <span className="inline-flex items-center gap-2 rounded-full bg-[#f3edff] px-2.5 py-1 text-[11px] font-semibold text-[#6d3af2]">
-                            {/* eslint-disable-next-line @next/next/no-img-element */}
-                            <img
-                              src={entry.logo}
+                  <div
+                    className={`pl-10 md:pl-0 ${
+                      left ? "md:pr-8 md:text-right" : "md:col-start-2 md:pl-8"
+                    }`}
+                  >
+                    <article className="glass-card group overflow-hidden rounded-[1.35rem] text-left transition duration-300 hover:-translate-y-1 hover:shadow-[0_18px_40px_rgba(109,58,242,0.12)]">
+                      <div className="flex gap-4 p-4 sm:p-5">
+                        {entry.image ? (
+                          <div className="relative h-[88px] w-[88px] shrink-0 overflow-hidden rounded-[0.9rem] bg-[#f7f5fc] shadow-[0_10px_24px_rgba(40,24,90,0.1)] sm:h-[100px] sm:w-[100px]">
+                            <Image
+                              src={entry.image}
                               alt=""
-                              width={16}
-                              height={16}
-                              className="h-4 w-4 object-contain"
+                              fill
+                              sizes="100px"
+                              className="object-contain p-2.5"
                               loading="lazy"
                             />
-                            {entry.org}
-                          </span>
+                          </div>
+                        ) : null}
+                        <div className="min-w-0 flex-1">
+                          <div className="flex flex-wrap items-center gap-2">
+                            <span className="text-[11px] font-bold tracking-[0.14em] text-[#7c4dff]">
+                              {entry.year}
+                            </span>
+                            <span className="inline-flex items-center gap-1.5 rounded-full bg-[#f3edff] px-2 py-0.5 text-[10px] font-semibold text-[#6d3af2]">
+                              {/* eslint-disable-next-line @next/next/no-img-element */}
+                              <img
+                                src={entry.logo}
+                                alt=""
+                                width={14}
+                                height={14}
+                                className="h-3.5 w-3.5 object-contain"
+                                loading="lazy"
+                              />
+                              {entry.org}
+                            </span>
+                          </div>
+                          <h3 className="mt-2 text-[1.05rem] font-extrabold tracking-[-0.03em] text-ink sm:text-[1.15rem]">
+                            {entry.title}
+                          </h3>
+                          <p className="mt-2 text-[0.9rem] leading-[1.65] text-muted">{entry.copy}</p>
                         </div>
-                        <h3 className="mt-3 text-[1.25rem] font-extrabold tracking-[-0.03em] text-ink sm:text-[1.35rem]">
-                          {entry.title}
-                        </h3>
-                        <p className="mt-3 text-[0.98rem] leading-[1.75] text-muted">{entry.copy}</p>
                       </div>
                     </article>
                   </div>
 
-                  <div className={`hidden md:block ${left ? "" : "md:order-1"}`} aria-hidden />
+                  <div className={`hidden md:block ${left ? "" : "md:col-start-1 md:row-start-1"}`} />
                 </motion.li>
               );
             })}

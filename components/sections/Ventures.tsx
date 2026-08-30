@@ -36,8 +36,8 @@ export function Ventures() {
             >
               <article className="h-full rounded-[1.75rem] bg-white/80 p-7 backdrop-blur-xl">
                 <div className="flex items-start justify-between gap-4">
-                  <span className="grid h-14 w-14 place-items-center rounded-2xl bg-[#f6f2ff]">
-                    <Image src={company.src} alt="" width={44} height={44} className="max-h-10 max-w-10 object-contain" />
+                  <span className="grid h-14 w-[4.5rem] place-items-center rounded-2xl bg-[#f6f2ff] px-1">
+                    <Image src={company.src} alt="" width={56} height={44} className="max-h-10 max-w-[3.5rem] object-contain" />
                   </span>
                   <ArrowUpRight className="text-[#7c4dff] opacity-0 transition group-hover:opacity-100" size={18} />
                 </div>

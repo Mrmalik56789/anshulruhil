@@ -44,26 +44,32 @@ export const aboutPage = {
     {
       title: "One Team One Dream Award",
       copy: "Honoring collective leadership and a culture that compounds results across teams.",
+      logo: "/images/awards/one-team-one-dream.png",
     },
     {
       title: "HANA Ratan Award 2023",
       copy: "Recognition for distinguished contribution, community impact, and global leadership.",
+      logo: "/images/awards/hana-ratan.png",
     },
     {
       title: "50 Under 50 Canada 2023",
       copy: "Named among Canada’s standout leaders shaping technology and enterprise.",
+      logo: "/images/awards/50-under-50.png",
     },
     {
       title: "Best Global AI Education Platform",
       copy: "Gyansetu recognized for transforming institute operations with human-centric AI.",
+      logo: "/images/awards/best-global-ai-education.png",
     },
     {
       title: "Best AI Product Award 2024",
       copy: "North American recognition for product excellence across the Ruhil AI portfolio.",
+      logo: "/images/awards/best-ai-product.png",
     },
     {
       title: "Best AI Product Award 2025",
       copy: "Consecutive honor — sustained invention, not a single product launch.",
+      logo: "/images/awards/best-ai-product.png",
     },
   ],
   career: [
