@@ -279,7 +279,8 @@ a {
   width: 1.75rem;
 }
 
-section[id] {
+section[id],
+main {
   scroll-margin-top: 6.5rem;
 }
 

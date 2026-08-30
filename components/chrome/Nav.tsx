@@ -2,31 +2,48 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
-import { site } from "@/data/site";
 import { ConnectButton } from "@/components/ui/ConnectButton";
 
+const navItems = [
+  { href: "/", label: "Home", hash: "home" },
+  { href: "/about", label: "About", hash: "about" },
+  { href: "/#leadership", label: "Leadership", hash: "leadership" },
+  { href: "/#companies", label: "Companies", hash: "companies" },
+  { href: "/#achievements", label: "Achievements", hash: "achievements" },
+  { href: "/#gallery", label: "Gallery", hash: "gallery" },
+  { href: "/#contact", label: "Contact", hash: "contact" },
+] as const;
+
 export function Nav() {
+  const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
-  const [active, setActive] = useState("#home");
+  const [active, setActive] = useState("home");
 
   useEffect(() => {
     const onScroll = () => {
       setScrolled(window.scrollY > 8);
-      const ids = site.nav.map((item) => item.href.slice(1));
-      let current = "#home";
-      for (const id of ids) {
+      if (pathname === "/about") {
+        setActive("about");
+        return;
+      }
+      if (pathname !== "/") return;
+      const hashes = navItems.map((item) => item.hash);
+      let current = "home";
+      for (const id of hashes) {
         const el = document.getElementById(id);
         if (!el) continue;
-        if (el.getBoundingClientRect().top <= 140) current = `#${id}`;
+        if (el.getBoundingClientRect().top <= 140) current = id;
       }
       setActive(current);
     };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  }, [pathname]);
 
   return (
     <header
@@ -37,7 +54,7 @@ export function Nav() {
       }`}
     >
       <div className="shell flex h-[4.75rem] items-center justify-between gap-8 lg:h-[5.5rem]">
-        <a href="#home" className="flex shrink-0 items-center gap-3">
+        <Link href="/" className="flex shrink-0 items-center gap-3">
           <Image
             src="/images/logos/ruhil-mark.png"
             alt=""
@@ -49,13 +66,16 @@ export function Nav() {
           <span className="text-[12px] font-extrabold tracking-[0.14em] text-ink sm:text-[13px] lg:text-[14px]">
             RUHIL HOLDINGS
           </span>
-        </a>
+        </Link>
 
         <nav className="hidden items-center gap-5 xl:flex xl:gap-8">
-          {site.nav.map((item) => {
-            const isActive = active === item.href;
+          {navItems.map((item) => {
+            const isActive =
+              pathname === "/about"
+                ? item.hash === "about"
+                : active === item.hash || (item.hash === "home" && active === "home" && pathname === "/");
             return (
-              <a
+              <Link
                 key={item.href}
                 href={item.href}
                 className={`nav-link text-[14px] font-medium xl:text-[15px] ${
@@ -63,7 +83,7 @@ export function Nav() {
                 }`}
               >
                 {item.label}
-              </a>
+              </Link>
             );
           })}
         </nav>
@@ -84,15 +104,15 @@ export function Nav() {
       {open ? (
         <div className="border-t border-line bg-white/95 backdrop-blur-xl xl:hidden">
           <div className="shell flex flex-col py-3">
-            {site.nav.map((item) => (
-              <a
+            {navItems.map((item) => (
+              <Link
                 key={item.href}
                 href={item.href}
                 onClick={() => setOpen(false)}
                 className="px-1 py-3.5 text-[16px] font-medium text-[#4b5160]"
               >
                 {item.label}
-              </a>
+              </Link>
             ))}
           </div>
         </div>

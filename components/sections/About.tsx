@@ -1,9 +1,9 @@
 "use client";
 
-import { useState } from "react";
 import Image from "next/image";
-import { motion, AnimatePresence } from "framer-motion";
-import { ArrowUpRight, X } from "lucide-react";
+import Link from "next/link";
+import { motion } from "framer-motion";
+import { ArrowUpRight } from "lucide-react";
 import { site } from "@/data/site";
 import { fadeUp } from "@/lib/motion";
 
@@ -23,7 +23,6 @@ function highlight(text: string, words: readonly string[]) {
 }
 
 export function About() {
-  const [open, setOpen] = useState(false);
   const { about } = site;
 
   return (
@@ -69,59 +68,13 @@ export function About() {
                 <p key={para}>{highlight(para, about.highlights)}</p>
               ))}
             </div>
-            <button type="button" onClick={() => setOpen(true)} className="connect-btn mt-8 inline-flex">
+            <Link href="/about" className="connect-btn mt-8 inline-flex">
               Read Full Story
               <ArrowUpRight size={16} />
-            </button>
+            </Link>
           </motion.div>
         </div>
       </div>
-
-      <AnimatePresence>
-        {open ? (
-          <motion.div
-            className="fixed inset-0 z-[80] grid place-items-center bg-[#101018]/45 p-4 backdrop-blur-md"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={() => setOpen(false)}
-          >
-            <motion.div
-              role="dialog"
-              aria-modal="true"
-              aria-labelledby="full-story-title"
-              initial={{ opacity: 0, y: 24, scale: 0.98 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: 16 }}
-              transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-              onClick={(e) => e.stopPropagation()}
-              className="lead-card max-h-[min(86vh,44rem)] w-full max-w-2xl overflow-y-auto rounded-[2rem] px-7 py-8 sm:px-10"
-            >
-              <div className="flex items-start justify-between gap-4">
-                <div>
-                  <p className="text-[12px] font-bold tracking-[0.16em] text-[#7c4dff]">THE FULL STORY</p>
-                  <h3 id="full-story-title" className="mt-2 text-2xl font-extrabold tracking-[-0.03em] text-ink">
-                    A life of learning, leadership, and legacy
-                  </h3>
-                </div>
-                <button
-                  type="button"
-                  onClick={() => setOpen(false)}
-                  className="grid h-10 w-10 place-items-center rounded-full bg-[#f3edff] text-ink"
-                  aria-label="Close story"
-                >
-                  <X size={18} />
-                </button>
-              </div>
-              <div className="mt-6 space-y-4 text-[1.02rem] leading-[1.85] text-muted">
-                {about.story.map((para) => (
-                  <p key={para}>{para}</p>
-                ))}
-              </div>
-            </motion.div>
-          </motion.div>
-        ) : null}
-      </AnimatePresence>
     </section>
   );
 }

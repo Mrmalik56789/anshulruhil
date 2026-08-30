@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { site } from "@/data/site";
 
 const social = [
@@ -26,6 +27,16 @@ const social = [
   },
 ];
 
+const footerNav = [
+  { href: "/", label: "Home" },
+  { href: "/about", label: "About" },
+  { href: "/#leadership", label: "Leadership" },
+  { href: "/#companies", label: "Companies" },
+  { href: "/#achievements", label: "Achievements" },
+  { href: "/#gallery", label: "Gallery" },
+  { href: "/#contact", label: "Contact" },
+] as const;
+
 export function Footer() {
   return (
     <footer className="relative z-[2] mt-8 overflow-hidden">
@@ -35,20 +46,20 @@ export function Footer() {
           <div className="footer-divider mb-10" />
           <div className="grid gap-10 lg:grid-cols-[1.2fr_0.9fr_0.9fr]">
             <div>
-              <a href="#home" className="inline-flex items-center gap-3">
+              <Link href="/" className="inline-flex items-center gap-3">
                 <Image src="/images/logos/ruhil-mark.png" alt="" width={42} height={42} className="h-10 w-10 object-contain" />
                 <span className="text-[13px] font-extrabold tracking-[0.14em] text-white">RUHIL HOLDINGS</span>
-              </a>
+              </Link>
               <p className="mt-5 max-w-sm text-[0.95rem] leading-[1.75] text-white/70">{site.tagline}</p>
             </div>
             <div>
               <p className="text-[12px] font-bold tracking-[0.16em] text-[#c4b5fd]">NAVIGATION</p>
               <ul className="mt-4 space-y-2.5">
-                {site.nav.map((item) => (
+                {footerNav.map((item) => (
                   <li key={item.href}>
-                    <a href={item.href} className="text-white/80 transition hover:text-white">
+                    <Link href={item.href} className="text-white/80 transition hover:text-white">
                       {item.label}
-                    </a>
+                    </Link>
                   </li>
                 ))}
               </ul>

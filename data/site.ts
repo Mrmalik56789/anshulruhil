@@ -22,13 +22,13 @@ export const site = {
     "Senior technology leader with 25+ years across global enterprises, public-interest platforms, and startup ecosystems. From Haryana to Harvard, he has led AI-driven transformation, large-scale technology delivery, and human-centric digital governance. Visionary behind Ruhil Holdings at USD 550+ million, driving scalable innovation with global impact.",
   tagline: "Experience The Visionary Difference: Empowerment, Innovation, Success",
   nav: [
-    { href: "#home", label: "Home" },
-    { href: "#about", label: "About" },
-    { href: "#leadership", label: "Leadership" },
-    { href: "#companies", label: "Companies" },
-    { href: "#achievements", label: "Achievements" },
-    { href: "#gallery", label: "Gallery" },
-    { href: "#contact", label: "Contact" },
+    { href: "/", label: "Home" },
+    { href: "/about", label: "About" },
+    { href: "/#leadership", label: "Leadership" },
+    { href: "/#companies", label: "Companies" },
+    { href: "/#achievements", label: "Achievements" },
+    { href: "/#gallery", label: "Gallery" },
+    { href: "/#contact", label: "Contact" },
   ],
   companies: [
     {

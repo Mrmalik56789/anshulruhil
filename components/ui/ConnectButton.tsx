@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, type MouseEvent } from "react";
+import Link from "next/link";
 import { User } from "lucide-react";
 
 export function ConnectButton({ className = "" }: { className?: string }) {
@@ -21,14 +22,14 @@ export function ConnectButton({ className = "" }: { className?: string }) {
   };
 
   return (
-    <a
+    <Link
       ref={ref}
-      href="#contact"
+      href="/#contact"
       className={`connect-btn inline-flex ${className}`}
       onClick={ripple}
     >
       <User size={16} strokeWidth={2.2} />
       Connect
-    </a>
+    </Link>
   );
 }
